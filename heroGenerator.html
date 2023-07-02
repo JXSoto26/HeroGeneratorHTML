@@ -1,0 +1,36 @@
+<DOCTYPE html>
+<html>
+    <head>
+        <title>JS Final Project</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <H1>Create a Star Wars Hero!</H1>
+        <div id="name"></div>
+        <div id="eyecolor"></div>
+        <div id="birthyear"></div>
+        <button class="getRandomCharacter">Create a Hero!</button>
+
+
+        <script>
+            const name = document.getElementById("name");
+            const eyecolor = document.getElementById("eyecolor");
+            const birthyear = document.getElementById("birthyear");
+            const button = document.querySelector(".getRandomCharacter");
+            button.addEventListener('click', (e) => {
+                e.preventDefault()
+                const randomNumber = Math.ceil(Math.random() * 83)
+                fetch(`https://swapi.dev/api/people/${randomNumber}/`)
+                    .then(response => response.json())
+                    .then(character => {
+                        name.innerHTML = character['name'];
+                        eyecolor.innerHTML = character['eye_color'];
+                        birthyear.innerHTML = character['birth_year'];
+        })
+
+    })
+
+        </script>
+    </body>
+</html>
